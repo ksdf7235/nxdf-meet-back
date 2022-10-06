@@ -5,6 +5,7 @@ import schema from "./schema";
 import fs from "fs";
 import https from "https";
 import http from "http";
+import { confirmEmail } from "./routes/api";
 
 const configurations = {
   // Note: You may need sudo to run on port 443
@@ -19,6 +20,7 @@ const server = new ApolloServer({ schema, csrfPrevention: true });
 server.start();
 
 const app = express();
+app.get("/v1", confirmEmail);
 server.applyMiddleware({ app });
 
 // Create the HTTPS or HTTP server, per configuration

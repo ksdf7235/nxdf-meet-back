@@ -1,19 +1,17 @@
 import { gql } from "apollo-server";
 
 export default gql`
-  type metawhitelist {
+  type user {
     id: Int!
-    email: String
+    email: String!
     sol_address: String!
-    nft_amount: Int
-    nationality: String
     discord_username: String
-    twitter_username: String
   }
   type Query {
-    whitelists: [metawhitelist]
-    whitelist(sol_address: String!): metawhitelist
-    verifywhitelist(sol_address: String!): MutationResponse
+    users: [user]
+    user(email: String!): user
+    verifyuser(email: String!): MutationResponse
+    sendemailuser(email: String!): MutationResponse
   }
   type Mutation {
     updateWhitelist(
